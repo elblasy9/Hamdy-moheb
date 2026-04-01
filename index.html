@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مكتبة حمدي محب | تحويل آمن</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #0f0f0f; /* خلفية داكنة جداً للمظهر المودرن */
+            font-family: 'Cairo', sans-serif;
+            overflow: hidden;
+            color: #fff;
+        }
+
+        /* دوائر مضيئة في الخلفية لإعطاء عمق */
+        .bg-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            filter: blur(50px);
+            z-index: 1;
+            animation: move 10s infinite alternate;
+        }
+
+        @keyframes move {
+            from { transform: translate(-50%, -50%); }
+            to { transform: translate(50%, 50%); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 60px 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            max-width: 450px;
+            width: 90%;
+            transform: scale(0.9);
+            animation: entrance 1s cubic-bezier(0.17, 0.67, 0.83, 0.67) forwards;
+        }
+
+        @keyframes entrance {
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #d4af37, #f2d06b, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+        }
+
+        /* تصميم الـ Loader المودرن */
+        .loader-box {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px;
+        }
+
+        .circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-top-color: #d4af37;
+            border-radius: 50%;
+            animation: rotate 1.5s linear infinite;
+        }
+
+        .circle-inner {
+            position: absolute;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 3px solid transparent;
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: rotate 2s linear infinite reverse;
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .status-text {
+            font-size: 0.9rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+        }
+
+        /* بار التقدم الصغير تحت */
+        .progress-bar {
+            width: 100%;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .progress-fill {
+            position: absolute;
+            width: 0%;
+            height: 100%;
+            background: #d4af37;
+            animation: fill 4s ease-in-out forwards;
+        }
+
+        @keyframes fill {
+            to { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow"></div>
+
+    <div class="container">
+        <div class="loader-box">
+            <div class="circle"></div>
+            <div class="circle-inner"></div>
+        </div>
+        <h1>الدخول لمكتبة حمدى محب</h1>
+        <p class="status-text">جاري التحميل بأمان</p>
+        
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+
+    <script>
+        const target = "https://hamdy-moheb.odoo.com";
+        
+        // التحويل بعد انتهاء حركة بار التقدم (4 ثوانٍ)
+        setTimeout(() => {
+            document.querySelector('.container').style.opacity = '0';
+            document.querySelector('.container').style.transform = 'translateY(-20px)';
+            document.querySelector('.container').style.transition = 'all 0.8s ease';
+            
+            setTimeout(() => {
+                window.location.href = target;
+            }, 800);
+        }, 4000);
+    </script>
+</body>
+</html>
